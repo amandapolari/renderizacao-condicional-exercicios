@@ -14,6 +14,10 @@ const GlobalStyled = createGlobalStyle`
     margin: 0;
     box-sizing: border-box;
   }
+
+  body {
+    background-color: lightslategray;
+  }
 `;
 const MainContainer = styled.main`
     height: 100vh;
