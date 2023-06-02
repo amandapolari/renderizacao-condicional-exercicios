@@ -1,34 +1,45 @@
-import { Form, FormContainer, Input, SendButton, StyledLabel, RegisterButton } from "./styled";
+import {
+    Form,
+    FormContainer,
+    Input,
+    SendButton,
+    StyledLabel,
+    RegisterButton,
+} from './styled';
 
 function TelaLogin(props) {
-  const login = () => {
-    // fluxo de login (ainda veremos)
-    props.mudarTela("TelaPrincipal")
-  }
+    const login = () => {
+        // fluxo de login (ainda veremos)
+        props.mudarTela('TelaPrincipal');
+    };
 
-  const mostrarTelaCadastro = () => {
-    props.mudarTela("TelaCadastro")
-  }
+    const mostrarTelaCadastro = () => {
+        props.mudarTela('TelaCadastro');
+    };
 
-  return (
-    <FormContainer >
-      <h1>LOGIN</h1>
+    return (
+        <FormContainer>
+            <h1>LOGIN</h1>
 
-      <Form>
-        <StyledLabel>E-mail:
-          <Input />
-        </StyledLabel>
+            <Form>
+                <StyledLabel>
+                    E-mail:
+                    <Input />
+                </StyledLabel>
 
-        <StyledLabel>Senha:
-          <Input type={"password"} />
-        </StyledLabel>
+                <StyledLabel>
+                    Senha:
+                    <Input type={'password'} />
+                </StyledLabel>
 
-        <SendButton onClick={login}>Entrar</SendButton>
+                <SendButton onClick={login}>Entrar</SendButton>
 
-        <RegisterButton onClick={mostrarTelaCadastro}>Cadastre-se</RegisterButton>
-      </Form>
-    </FormContainer>
-  );
+                <RegisterButton onClick={mostrarTelaCadastro}>
+                    Cadastre-se
+                </RegisterButton>
+            </Form>
+        </FormContainer>
+    );
 }
 
 export default TelaLogin;
