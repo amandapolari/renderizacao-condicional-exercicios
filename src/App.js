@@ -3,9 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import TelaLogin from './components/TelaLogin/TelaLogin';
 import TelaCadastro from './components/TelaCadastro/TelaCadastro';
 import TelaPrincipal from './components/TelaPrincipal/TelaPrincipal.js';
-
-// PARA VISUALIZAÇÃO DO NOVO COMPONENTE CRIADO:
-// import TelaCadastroEndereco from './components/TelaCadastroEndereco/TelaCadastroEndereco';
+import TelaCadastroEndereco from './components/TelaCadastroEndereco/TelaCadastroEndereco';
 
 const GlobalStyled = createGlobalStyle`
   html {
@@ -27,8 +25,6 @@ const MainContainer = styled.main`
 `;
 
 function App() {
-    // PARA VISUALIZAÇÃO DO NOVO COMPONENTE CRIADO:
-    // const [telaAtual, setTelaAtual] = useState('Teste');
     const [telaAtual, setTelaAtual] = useState('TelaLogin');
 
     const mudarTela = (novaTela) => {
@@ -43,12 +39,11 @@ function App() {
             case 'TelaCadastro':
                 return <TelaCadastro mudarTela={mudarTela} />;
 
+            case 'TelaCadastroEndereco':
+                return <TelaCadastroEndereco mudarTela={mudarTela} />;
+                
             case 'TelaPrincipal':
                 return <TelaPrincipal mudarTela={mudarTela} />;
-
-            // PARA VISUALIZAÇÃO DO NOVO COMPONENTE CRIADO:
-            // case 'Teste':
-            //     return <TelaCadastroEndereco mudarTela={mudarTela} />;
 
             default:
                 return <p>Tela inválida</p>;
