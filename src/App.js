@@ -26,7 +26,7 @@ const MainContainer = styled.main`
 
 function App() {
     const [telaAtual, setTelaAtual] = useState('TelaLogin');
-    const [formData, setFormData] = useState({
+    const [dadosFormLogin, setDadosFormLogin] = useState({
         email: '',
         password: '',
     });
@@ -40,14 +40,14 @@ function App() {
         event.preventDefault();
         // console.log(event.target.email.value);
         // console.log(event.target.email.value);
-        setFormData({
-            ...formData, // mantém as propriedades existentes
+        setDadosFormLogin({
+            ...dadosFormLogin, // mantém as propriedades existentes
             email: event.target.email.value,
             password: event.target.password.value,
         });
     };
     // Aqui tem resultado
-    console.log(formData);
+    console.log(dadosFormLogin);
 
     const renderizaTela = () => {
         switch (telaAtual) {
