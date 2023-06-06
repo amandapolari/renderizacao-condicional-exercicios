@@ -26,22 +26,45 @@ const MainContainer = styled.main`
 
 function App() {
     const [telaAtual, setTelaAtual] = useState('TelaLogin');
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+    });
 
     const mudarTela = (novaTela) => {
         setTelaAtual(novaTela);
     };
 
+    // MUDAR NOME: set new values
+    const capturaInfos = (event) => {
+        event.preventDefault();
+        // console.log(event.target.email.value);
+        // console.log(event.target.email.value);
+        setFormData({
+            ...formData, // mantém as propriedades existentes
+            email: event.target.email.value,
+            password: event.target.password.value,
+        });
+    };
+    // Aqui tem resultado
+    console.log(formData);
+
     const renderizaTela = () => {
         switch (telaAtual) {
             case 'TelaLogin':
-                return <TelaLogin mudarTela={mudarTela} />;
+                return (
+                    <TelaLogin
+                        mudarTela={mudarTela}
+                        capturaInfos={capturaInfos}
+                    />
+                );
 
             case 'TelaCadastro':
                 return <TelaCadastro mudarTela={mudarTela} />;
 
             case 'TelaCadastroEndereco':
                 return <TelaCadastroEndereco mudarTela={mudarTela} />;
-                
+
             case 'TelaPrincipal':
                 return <TelaPrincipal mudarTela={mudarTela} />;
 
