@@ -25,38 +25,37 @@ const MainContainer = styled.main`
 `;
 
 function App() {
-    // ESTADOS MUDANÇA DE TELA:
+    // => MUDANÇA DE TELA:
+    // estados:
     const [telaAtual, setTelaAtual] = useState('TelaLogin');
 
-    // FUNÇÕES MUDANÇAS DE TELA:
+    // função que seta estado:
     const mudarTela = (novaTela) => {
         setTelaAtual(novaTela);
     };
 
-    // ----------------------
-
-    // ESTADOS PARA FORM LOGIN:
+    // FORM LOGIN
+    // estados:
     const [dadosFormLogin, setDadosFormLogin] = useState({
         email: '',
         password: '',
     });
 
-    // FUNÇÃO QUE CAPTURA E SETA VALORES - LOGIN
+    // função que seta estado:
     const capturaInfosLogin = (event) => {
         event.preventDefault();
-        // console.log(event.target.email.value);
-        // console.log(event.target.email.value);
         setDadosFormLogin({
-            ...dadosFormLogin, // mantém as propriedades existentes
+            ...dadosFormLogin,
             email: event.target.email.value,
             password: event.target.password.value,
         });
     };
 
-    // MOSTRANDO DADOS - LOGIN
-    // console.log(dadosFormLogin);
+    // mostrando dados no console
+    console.log(dadosFormLogin);
 
-    // ESTADOS PARA O FORM CADASTRAR:
+    // => FORM CADASTRAR:
+    // estados:
     const [dadosFormCadastrar, setDadosFormCadastrar] = useState({
         name: '',
         email: '',
@@ -64,10 +63,9 @@ function App() {
         confirmacao: '',
     });
 
-    // FUNÇÃO QUE CAPTURA E SETA VALORES - CADASTRAR
+    // função que seta estado:
     const capturaInfosCadastrar = (event) => {
         event.preventDefault();
-        // console.log(event.target.name.value)
         setDadosFormCadastrar({
             ...dadosFormCadastrar,
             name: event.target.name.value,
@@ -76,10 +74,12 @@ function App() {
             confirmacao: event.target.confirmacao.value,
         });
     };
-    // MOSTRANDO DADOS - CADASTRAR
-    // console.log(dadosFormCadastrar);
 
-    // ESTADOS PARA O FORM CONFIRMAR:
+    // mostrando dados no console
+    console.log(dadosFormCadastrar);
+
+    // => FORM CONFIRMAR:
+    // estados:
     const [dadosFormCadastrarEndereco, setDadosFormCadastrarEndereco] =
         useState({
             endereco: '',
@@ -88,11 +88,9 @@ function App() {
             telefone: '',
         });
 
-    // FUNÇÃO QUE CAPTURA E SETA VALORES - CONFIRMAR
-
+    // função que seta estado:
     const capturaInfosCadastrarEndereco = (event) => {
         event.preventDefault();
-        // console.log(event.target.name.value)
         setDadosFormCadastrarEndereco({
             ...dadosFormCadastrarEndereco,
             endereco: event.target.endereco.value,
@@ -102,11 +100,10 @@ function App() {
         });
     };
 
-    // MOSTRANDO DADOS - CONFIRMAR
+    // mostrando dados no console
     console.log(dadosFormCadastrarEndereco);
 
-    // -------------------------------
-
+    // => RENDERIZAÇÃO DE TELA:
     const renderizaTela = () => {
         switch (telaAtual) {
             case 'TelaLogin':

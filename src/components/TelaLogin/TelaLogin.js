@@ -28,15 +28,15 @@ function TelaLogin({ mudarTela, capturaInfosLogin }) {
             >
                 <StyledLabel>
                     E-mail:
-                    <Input name='email' />
+                    <Input name="email" />
                 </StyledLabel>
 
                 <StyledLabel>
                     Senha:
-                    <Input name='password' type={'password'} />
+                    <Input name="password" type={'password'} />
                 </StyledLabel>
 
-                <SendButton type='submit'>Entrar</SendButton>
+                <SendButton type="submit">Entrar</SendButton>
 
                 <RegisterButton onClick={mostrarTelaCadastro}>
                     Cadastre-se
