@@ -8,18 +8,23 @@ import {
 } from '../TelaLogin/styled';
 import { BackToLoginButton } from '../TelaCadastro/styled';
 
-const TelaCadastroEndereco = (props) => {
-    const cadastrar = () => {
-        props.mudarTela('TelaPrincipal');
+const TelaCadastroEndereco = ({ mudarTela, capturaInfosCadastrarEndereco }) => {
+    const cadastrar = (event) => {
+        mudarTela('TelaPrincipal');
+        capturaInfosCadastrarEndereco(event);
     };
     const mostrarTelaLogin = () => {
-        props.mudarTela('TelaLogin');
+        mudarTela('TelaLogin');
     };
     return (
         <FormContainer>
             <h1>Cadastro Endereco </h1>
 
-            <Form>
+            <Form
+                onSubmit={(event) => {
+                    cadastrar(event);
+                }}
+            >
                 <StyledLabel htmlFor="endereco">
                     Endereço:
                     <Input id="endereco" />
@@ -40,13 +45,7 @@ const TelaCadastroEndereco = (props) => {
                     <Input id="telefone" />
                 </StyledLabel>
 
-                <SendButton
-                    onClick={() => {
-                        cadastrar();
-                    }}
-                >
-                    Confirmar
-                </SendButton>
+                <SendButton type="submit">Confirmar</SendButton>
 
                 <BackToLoginButton onClick={mostrarTelaLogin}>
                     Já possuo cadastro

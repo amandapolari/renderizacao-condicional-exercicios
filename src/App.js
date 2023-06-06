@@ -77,21 +77,33 @@ function App() {
         });
     };
     // MOSTRANDO DADOS - CADASTRAR
-    console.log(dadosFormCadastrar);
+    // console.log(dadosFormCadastrar);
 
     // ESTADOS PARA O FORM CONFIRMAR:
-    // const [dadosFormCadastrarEndereco, setDadosFormCadastrarEndereco] =
-    //     useState({
-    //         endereco: '',
-    //         numero: '',
-    //         complemento: '',
-    //         telefone: '',
-    //     });
+    const [dadosFormCadastrarEndereco, setDadosFormCadastrarEndereco] =
+        useState({
+            endereco: '',
+            numero: '',
+            complemento: '',
+            telefone: '',
+        });
 
     // FUNÇÃO QUE CAPTURA E SETA VALORES - CONFIRMAR
 
+    const capturaInfosCadastrarEndereco = (event) => {
+        event.preventDefault();
+        // console.log(event.target.name.value)
+        setDadosFormCadastrarEndereco({
+            ...dadosFormCadastrarEndereco,
+            endereco: event.target.endereco.value,
+            numero: event.target.numeroResidencia.value,
+            complemento: event.target.complemento.value,
+            telefone: event.target.telefone.value,
+        });
+    };
+
     // MOSTRANDO DADOS - CONFIRMAR
-    // console.log();
+    console.log(dadosFormCadastrarEndereco);
 
     // -------------------------------
 
@@ -114,7 +126,14 @@ function App() {
                 );
 
             case 'TelaCadastroEndereco':
-                return <TelaCadastroEndereco mudarTela={mudarTela} />;
+                return (
+                    <TelaCadastroEndereco
+                        mudarTela={mudarTela}
+                        capturaInfosCadastrarEndereco={
+                            capturaInfosCadastrarEndereco
+                        }
+                    />
+                );
 
             case 'TelaPrincipal':
                 return <TelaPrincipal mudarTela={mudarTela} />;
