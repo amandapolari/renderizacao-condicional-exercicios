@@ -52,7 +52,7 @@ function App() {
     };
 
     // mostrando dados no console
-    console.log(dadosFormLogin);
+    console.log('DADOS DO FORM LOGIN:',dadosFormLogin);
 
     // => FORM CADASTRAR:
     // estados:
@@ -76,7 +76,7 @@ function App() {
     };
 
     // mostrando dados no console
-    console.log(dadosFormCadastrar);
+    console.log('DADOS DO FORM CADASTRAR:',dadosFormCadastrar);
 
     // => FORM CONFIRMAR:
     // estados:
@@ -101,7 +101,7 @@ function App() {
     };
 
     // mostrando dados no console
-    console.log(dadosFormCadastrarEndereco);
+    console.log('DADOS DO FORM ENDEREÇO:',dadosFormCadastrarEndereco);
 
     // => RENDERIZAÇÃO DE TELA:
     const renderizaTela = () => {
