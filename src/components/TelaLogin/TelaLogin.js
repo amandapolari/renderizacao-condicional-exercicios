@@ -7,9 +7,9 @@ import {
     RegisterButton,
 } from './styled';
 
-function TelaLogin({ mudarTela, capturaInfos }) {
+function TelaLogin({ mudarTela, capturaInfosLogin }) {
     const login = (event) => {
-        capturaInfos(event);
+        capturaInfosLogin(event);
         mudarTela('TelaPrincipal');
     };
 

@@ -25,18 +25,24 @@ const MainContainer = styled.main`
 `;
 
 function App() {
+    // ESTADOS MUDANÇA DE TELA:
     const [telaAtual, setTelaAtual] = useState('TelaLogin');
+
+    // FUNÇÕES MUDANÇAS DE TELA:
+    const mudarTela = (novaTela) => {
+        setTelaAtual(novaTela);
+    };
+
+    // ----------------------
+
+    // ESTADOS PARA FORM LOGIN:
     const [dadosFormLogin, setDadosFormLogin] = useState({
         email: '',
         password: '',
     });
 
-    const mudarTela = (novaTela) => {
-        setTelaAtual(novaTela);
-    };
-
-    // MUDAR NOME: set new values
-    const capturaInfos = (event) => {
+    // FUNÇÃO QUE CAPTURA E SETA VALORES - LOGIN
+    const capturaInfosLogin = (event) => {
         event.preventDefault();
         // console.log(event.target.email.value);
         // console.log(event.target.email.value);
@@ -46,8 +52,48 @@ function App() {
             password: event.target.password.value,
         });
     };
-    // Aqui tem resultado
-    console.log(dadosFormLogin);
+
+    // MOSTRANDO DADOS - LOGIN
+    // console.log(dadosFormLogin);
+
+    // ESTADOS PARA O FORM CADASTRAR:
+    const [dadosFormCadastrar, setDadosFormCadastrar] = useState({
+        name: '',
+        email: '',
+        senha: '',
+        confirmacao: '',
+    });
+
+    // FUNÇÃO QUE CAPTURA E SETA VALORES - CADASTRAR
+    const capturaInfosCadastrar = (event) => {
+        event.preventDefault();
+        // console.log(event.target.name.value)
+        setDadosFormCadastrar({
+            ...dadosFormCadastrar,
+            name: event.target.name.value,
+            email: event.target.email.value,
+            senha: event.target.senha.value,
+            confirmacao: event.target.confirmacao.value,
+        });
+    };
+    // MOSTRANDO DADOS - CADASTRAR
+    console.log(dadosFormCadastrar);
+
+    // ESTADOS PARA O FORM CONFIRMAR:
+    // const [dadosFormCadastrarEndereco, setDadosFormCadastrarEndereco] =
+    //     useState({
+    //         endereco: '',
+    //         numero: '',
+    //         complemento: '',
+    //         telefone: '',
+    //     });
+
+    // FUNÇÃO QUE CAPTURA E SETA VALORES - CONFIRMAR
+
+    // MOSTRANDO DADOS - CONFIRMAR
+    // console.log();
+
+    // -------------------------------
 
     const renderizaTela = () => {
         switch (telaAtual) {
@@ -55,12 +101,17 @@ function App() {
                 return (
                     <TelaLogin
                         mudarTela={mudarTela}
-                        capturaInfos={capturaInfos}
+                        capturaInfosLogin={capturaInfosLogin}
                     />
                 );
 
             case 'TelaCadastro':
-                return <TelaCadastro mudarTela={mudarTela} />;
+                return (
+                    <TelaCadastro
+                        mudarTela={mudarTela}
+                        capturaInfosCadastrar={capturaInfosCadastrar}
+                    />
+                );
 
             case 'TelaCadastroEndereco':
                 return <TelaCadastroEndereco mudarTela={mudarTela} />;

@@ -7,8 +7,9 @@ import {
     BackToLoginButton,
 } from './styled';
 
-function TelaCadastro({ mudarTela }) {
-    const cadastrar = () => {
+function TelaCadastro({ mudarTela, capturaInfosCadastrar }) {
+    const cadastrar = (event) => {
+        capturaInfosCadastrar(event);
         mudarTela('TelaCadastroEndereco');
     };
 
@@ -20,28 +21,36 @@ function TelaCadastro({ mudarTela }) {
         <FormContainer>
             <h1>Cadastro </h1>
 
-            <Form>
-                <StyledLabel htmlFor="titulo">
+            <Form
+                onSubmit={(event) => {
+                    cadastrar(event);
+                }}
+            >
+                <StyledLabel htmlFor="name">
                     Nome:
-                    <Input id="titulo" />
+                    <Input id="name" name="name" />
                 </StyledLabel>
 
-                <StyledLabel htmlFor="foto">
+                <StyledLabel htmlFor="email">
                     E-mail:
-                    <Input id="foto" />
+                    <Input id="email" name="email" />
                 </StyledLabel>
 
-                <StyledLabel htmlFor="descricao">
+                <StyledLabel htmlFor="senha">
                     Senha:
-                    <Input id="descricao" />
+                    <Input id="senha" name="senha" type="password" />
                 </StyledLabel>
 
-                <StyledLabel htmlFor="descricao">
+                <StyledLabel htmlFor="confirmacao">
                     Confirmação da senha:
-                    <Input id="descricao" />
+                    <Input
+                        id="confirmacao"
+                        name="confirmacao"
+                        type="password"
+                    />
                 </StyledLabel>
 
-                <SendButton onClick={cadastrar}>Cadastrar</SendButton>
+                <SendButton type="submit">Cadastrar</SendButton>
 
                 <BackToLoginButton onClick={mostrarTelaLogin}>
                     Já possuo cadastro
