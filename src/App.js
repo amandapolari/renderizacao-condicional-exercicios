@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import TelaLogin from './components/TelaLogin/TelaLogin';
 import TelaCadastro from './components/TelaCadastro/TelaCadastro';
@@ -45,14 +45,17 @@ function App() {
     const capturaInfosLogin = (event) => {
         event.preventDefault();
         setDadosFormLogin({
-            ...dadosFormLogin,
             email: event.target.email.value,
             password: event.target.password.value,
         });
     };
 
     // mostrando dados no console
-    console.log('DADOS DO FORM LOGIN:',dadosFormLogin);
+    useEffect(() => {
+        if (dadosFormLogin.email) {
+            console.log('DADOS DO FORM LOGIN:', dadosFormLogin);
+        }
+    }, [dadosFormLogin]);
 
     // => FORM CADASTRAR:
     // estados:
@@ -76,7 +79,11 @@ function App() {
     };
 
     // mostrando dados no console
-    console.log('DADOS DO FORM CADASTRAR:',dadosFormCadastrar);
+    useEffect(() => {
+        if (dadosFormCadastrar.name) {
+            console.log('DADOS DO FORM CADASTRAR:', dadosFormCadastrar);
+        }
+    }, [dadosFormCadastrar]);
 
     // => FORM CONFIRMAR:
     // estados:
@@ -101,7 +108,11 @@ function App() {
     };
 
     // mostrando dados no console
-    console.log('DADOS DO FORM ENDEREÇO:',dadosFormCadastrarEndereco);
+    useEffect(() => {
+        if (dadosFormCadastrarEndereco.endereco) {
+            console.log('DADOS DO FORM ENDEREÇO:', dadosFormCadastrarEndereco);
+        }
+    }, [dadosFormCadastrarEndereco]);
 
     // => RENDERIZAÇÃO DE TELA:
     const renderizaTela = () => {
