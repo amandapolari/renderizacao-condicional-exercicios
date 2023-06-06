@@ -8,7 +8,8 @@ import {
 } from './styled';
 
 function TelaLogin({ mudarTela, capturaInfos }) {
-    const login = () => {
+    const login = (event) => {
+        capturaInfos(event);
         mudarTela('TelaPrincipal');
     };
 
@@ -22,7 +23,7 @@ function TelaLogin({ mudarTela, capturaInfos }) {
 
             <Form
                 onSubmit={(event) => {
-                    capturaInfos(event);
+                    login(event);
                 }}
             >
                 <StyledLabel>

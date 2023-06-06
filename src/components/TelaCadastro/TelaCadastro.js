@@ -7,13 +7,13 @@ import {
     BackToLoginButton,
 } from './styled';
 
-function TelaCadastro(props) {
+function TelaCadastro({ mudarTela }) {
     const cadastrar = () => {
-        props.mudarTela('TelaCadastroEndereco');
+        mudarTela('TelaCadastroEndereco');
     };
 
     const mostrarTelaLogin = () => {
-        props.mudarTela('TelaLogin');
+        mudarTela('TelaLogin');
     };
 
     return (
