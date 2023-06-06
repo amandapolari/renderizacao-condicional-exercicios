@@ -1,8 +1,9 @@
-import { useState } from "react";
-import styled, { createGlobalStyle } from "styled-components";
-import TelaLogin from "./components/TelaLogin/TelaLogin";
-import TelaCadastro from "./components/TelaCadastro/TelaCadastro";
-import TelaPrincipal from "./components/TelaPrincipal/TelaPrincipal.js";
+import { useEffect, useState } from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
+import TelaLogin from './components/TelaLogin/TelaLogin';
+import TelaCadastro from './components/TelaCadastro/TelaCadastro';
+import TelaPrincipal from './components/TelaPrincipal/TelaPrincipal.js';
+import TelaCadastroEndereco from './components/TelaCadastroEndereco/TelaCadastroEndereco';
 
 const GlobalStyled = createGlobalStyle`
   html {
@@ -14,41 +15,149 @@ const GlobalStyled = createGlobalStyle`
     margin: 0;
     box-sizing: border-box;
   }
-`
+
+  body {
+    background-color: lightslategray;
+  }
+`;
 const MainContainer = styled.main`
-  height: 100vh;
-`
+    height: 100vh;
+`;
 
 function App() {
-  const [telaAtual, setTelaAtual] = useState("TelaLogin")
+    // => MUDANÇA DE TELA:
+    // estados:
+    const [telaAtual, setTelaAtual] = useState('TelaLogin');
 
-  const mudarTela = (novaTela) => {
-    setTelaAtual(novaTela)
-  }
+    // função que seta estado:
+    const mudarTela = (novaTela) => {
+        setTelaAtual(novaTela);
+    };
 
-  const renderizaTela = () => {
-    switch (telaAtual) {
-      case "TelaLogin":
-        return <TelaLogin mudarTela={mudarTela} />;
+    // FORM LOGIN
+    // estados:
+    const [dadosFormLogin, setDadosFormLogin] = useState({
+        email: '',
+        password: '',
+    });
 
-      case "TelaCadastro":
-        return <TelaCadastro mudarTela={mudarTela} />;
+    // função que seta estado:
+    const capturaInfosLogin = (event) => {
+        event.preventDefault();
+        setDadosFormLogin({
+            email: event.target.email.value,
+            password: event.target.password.value,
+        });
+    };
 
-      case "TelaPrincipal":
-        return <TelaPrincipal mudarTela={mudarTela} />
+    // mostrando dados no console
+    useEffect(() => {
+        if (dadosFormLogin.email) {
+            console.log('DADOS DO FORM LOGIN:', dadosFormLogin);
+        }
+    }, [dadosFormLogin]);
 
-      default:
-        return <p>Tela inválida</p>
-    }
-  }
+    // => FORM CADASTRAR:
+    // estados:
+    const [dadosFormCadastrar, setDadosFormCadastrar] = useState({
+        name: '',
+        email: '',
+        senha: '',
+        confirmacao: '',
+    });
 
-  return (
-    <MainContainer >
-      <GlobalStyled />
+    // função que seta estado:
+    const capturaInfosCadastrar = (event) => {
+        event.preventDefault();
+        setDadosFormCadastrar({
+            ...dadosFormCadastrar,
+            name: event.target.name.value,
+            email: event.target.email.value,
+            senha: event.target.senha.value,
+            confirmacao: event.target.confirmacao.value,
+        });
+    };
 
-      {renderizaTela()}
-    </MainContainer>
-  );
+    // mostrando dados no console
+    useEffect(() => {
+        if (dadosFormCadastrar.name) {
+            console.log('DADOS DO FORM CADASTRAR:', dadosFormCadastrar);
+        }
+    }, [dadosFormCadastrar]);
+
+    // => FORM CONFIRMAR:
+    // estados:
+    const [dadosFormCadastrarEndereco, setDadosFormCadastrarEndereco] =
+        useState({
+            endereco: '',
+            numero: '',
+            complemento: '',
+            telefone: '',
+        });
+
+    // função que seta estado:
+    const capturaInfosCadastrarEndereco = (event) => {
+        event.preventDefault();
+        setDadosFormCadastrarEndereco({
+            ...dadosFormCadastrarEndereco,
+            endereco: event.target.endereco.value,
+            numero: event.target.numeroResidencia.value,
+            complemento: event.target.complemento.value,
+            telefone: event.target.telefone.value,
+        });
+    };
+
+    // mostrando dados no console
+    useEffect(() => {
+        if (dadosFormCadastrarEndereco.endereco) {
+            console.log('DADOS DO FORM ENDEREÇO:', dadosFormCadastrarEndereco);
+        }
+    }, [dadosFormCadastrarEndereco]);
+
+    // => RENDERIZAÇÃO DE TELA:
+    const renderizaTela = () => {
+        switch (telaAtual) {
+            case 'TelaLogin':
+                return (
+                    <TelaLogin
+                        mudarTela={mudarTela}
+                        capturaInfosLogin={capturaInfosLogin}
+                    />
+                );
+
+            case 'TelaCadastro':
+                return (
+                    <TelaCadastro
+                        mudarTela={mudarTela}
+                        capturaInfosCadastrar={capturaInfosCadastrar}
+                    />
+                );
+
+            case 'TelaCadastroEndereco':
+                return (
+                    <TelaCadastroEndereco
+                        mudarTela={mudarTela}
+                        capturaInfosCadastrarEndereco={
+                            capturaInfosCadastrarEndereco
+                        }
+                    />
+                );
+
+            case 'TelaPrincipal':
+                return <TelaPrincipal mudarTela={mudarTela} />;
+
+            default:
+                return <p>Tela inválida</p>;
+        }
+    };
+
+    return (
+        <MainContainer>
+            <GlobalStyled />
+
+            {renderizaTela()}
+        </MainContainer>
+    );
 }
 
 export default App;
